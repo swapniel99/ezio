@@ -47,6 +47,7 @@ Let us divide the answer into 2 parts:
 Kernels are initialized with random numbers. The range and distribution of these random numbers can be debated but they have to be random nonetheless.
 Randomness helps the neural network to break symmetry faster and converge. It gives the initial noise or mutation required for its evolution.
 For example: If kernels are initialised with 0 then the entire neural network is equivalent to one single neuron with 0. There is no non-linearity at this point. For NN to discover it takes a painful amount of time.
+
 ![](https://miro.medium.com/max/450/1*_wS_ul0act9fCT-b7SuONQ.png)
 
 
