@@ -22,6 +22,7 @@ Let us divide the answer into 2 parts:
 - If we think of convolution as interpolation from the input pixels to the central pixel, we cannot do so with an even-sized filter.
 - Suppose a part of the image contains all zeros except for one entry at a particular index. An odd filter will be able to capture this peak location while an even filter would not. We would want to preserve the location of peaks whenever we apply a filter.
 - An even sized filter will lead to aliasing errors and distortions across the layers.
+
 ![](https://i.stack.imgur.com/YDusp.png)
 
 **2.Why is the 3x3 kernel preferred over larger kernels like 5x5 ,7x7?**
@@ -29,6 +30,7 @@ Let us divide the answer into 2 parts:
 - A smaller kernel will be computationally more efficient. For example: To get a reception field of 5x5, we need to apply a 3x3 filter twice ((3*3)+(3*3) weights). Conversely, we will apply a 5x5 filter once.(5*5 weights).
 - We use a 1×1 filter to down sample the depth or number of feature maps.
 - Thus smaller kernels make deeper networks and larger make wider. The above points also provide the argument behind why deeper networks perform better than wider networks.
+
 ![](https://i.kym-cdn.com/photos/images/newsfeed/000/531/557/a88.jpg)
 
 
