@@ -58,8 +58,8 @@ Estimated Total Size (MB): 0.70
 	
 	# Convolution Block 1
 	self.cblock1 = nn.Sequential(
-	      conv -> drop -> relu ->
-	bn -> conv -> drop -> relu
+		      conv -> drop -> relu ->
+		bn -> conv -> drop -> relu
         )
         
         # Transition Block 1
