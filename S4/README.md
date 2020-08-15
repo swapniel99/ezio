@@ -1,6 +1,7 @@
 # S4 Solution
 ### Results
 Accuracy : **99.61%**
+
 Params : **19570**
 ### Network Diagram
 ![The Network](https://i.imgur.com/y3bj1OC.png  "AAA")
