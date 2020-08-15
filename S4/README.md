@@ -56,10 +56,10 @@ Estimated Total Size (MB): 0.70
 
 ```python
 	
-		# Convolution Block 1
-		self.cblock1 = nn.Sequential(
-	    	      conv -> drop -> relu ->
-	    	bn -> conv -> drop -> relu
+	# Convolution Block 1
+	self.cblock1 = nn.Sequential(
+	      conv -> drop -> relu ->
+	bn -> conv -> drop -> relu
         )
         
         # Transition Block 1
