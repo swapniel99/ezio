@@ -8,7 +8,7 @@ Params : **19570**
 
 [(Tool used to create above diagram)](https://alexlenail.me/NN-SVG/LeNet.html) 
 
-###Network Architecture
+### Network Architecture
 ```c
 ----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
@@ -58,7 +58,8 @@ Params size (MB): 0.07
 Estimated Total Size (MB): 0.70
 ----------------------------------------------------------------
 ```
-###Code Structure
+
+### Code Structure
 ```python
 	
 	# Convolution Block 1
@@ -98,7 +99,8 @@ Estimated Total Size (MB): 0.70
 	        flatten -> logsoftmax
         )
 ```
-###Description
+
+### Description
 
 The network consists of 3 convolution blocks. Each convolution block has 2 convolution layers. Few notable features :
 
