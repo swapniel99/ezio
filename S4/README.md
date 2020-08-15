@@ -1,9 +1,13 @@
 # S4 Solution
-
+### Results
+Accuracy : **99.61%**
+Params : **19570**
+### Network Diagram
 ![The Network](https://i.imgur.com/y3bj1OC.png  "AAA")
 
 [(Tool used to create above diagram)](https://alexlenail.me/NN-SVG/LeNet.html) 
 
+###Network Architecture
 ```c
 ----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
@@ -53,7 +57,7 @@ Params size (MB): 0.07
 Estimated Total Size (MB): 0.70
 ----------------------------------------------------------------
 ```
-
+###Code Structure
 ```python
 	
 	# Convolution Block 1
@@ -93,3 +97,15 @@ Estimated Total Size (MB): 0.70
 	        flatten -> logsoftmax
         )
 ```
+###Description
+
+The network consists of 3 convolution blocks. Each convolution block has 2 convolution layers. Few notable features :
+
+1. Dropout 5% applied after every conv2d layer.
+2. ReLU used as activation layer after dropout.
+3. Maxpool used after every 2 convolutions.
+4. Batch normalisation applied right before every convolution.
+5. Number of channels steadily increased from 8 to 32.
+6. Avg pool applied after reaching image size 7x7 and dropping it to 1x1.
+7. 2 FC layers applied after AvgPool using nn.conv2d of kernel size 1 and stride 1.
+8. Dropout between 2 FC layers set a bit higher to 30%.
