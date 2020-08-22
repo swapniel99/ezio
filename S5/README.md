@@ -1,5 +1,10 @@
 # S5 Solution
 
+### Team Members
+1. Swapnil Gusani
+2. Karan Patel
+3. Nikhil Kothari
+
 ### Problem Statement
 Achieve >= **99.4%** accuracy consistently on the **MNIST** dataset in <= **15  epochs**.
 
