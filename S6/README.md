@@ -25,6 +25,7 @@ Compare regularization techniques
 ### Training Loss and Validation Accuracy
 ![Loss/Accuracy](https://raw.githubusercontent.com/swapniel99/ezio/master/S6/images/loss_accuracy.png  "Loss/Accuracy")
 
+<br/><br/>
 ### Misclassified Examples
 
 <div style="text-align:center"><img src="https://raw.githubusercontent.com/swapniel99/ezio/master/S6/images/ex.png"/></div>
