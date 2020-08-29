@@ -24,17 +24,15 @@ Compare regularization techniques
 
 ### Training Loss and Validation Accuracy
 ![Loss/Accuracy](https://raw.githubusercontent.com/swapniel99/ezio/master/S6/images/loss_accuracy.png  "Loss/Accuracy")
-​
-<br/><br/>
-<div style="text-align:center">
+
 ### Misclassified Examples
-![Missclassified examples](https://raw.githubusercontent.com/swapniel99/ezio/master/S6/images/ex.png  "Missclassified examples")
-</div>
+
+<div style="text-align:center"><img src="https://raw.githubusercontent.com/swapniel99/ezio/master/S6/images/ex.png"/></div>
 
 <br/><br/>
 ### Network Diagram
 ![The Network](https://i.imgur.com/owE4034.png  "Model")
-​
+
 [(Tool used to create above diagram)](https://alexlenail.me/NN-SVG/LeNet.html) 
 ### Network Architecture
 ```c
