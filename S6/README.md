@@ -26,8 +26,10 @@ Compare regularization techniques
 ![Loss/Accuracy](https://raw.githubusercontent.com/swapniel99/ezio/master/S6/images/loss_accuracy.png  "Loss/Accuracy")
 ​
 <br/><br/>
+<div style="text-align:center">
 ### Misclassified Examples
 ![Missclassified examples](https://raw.githubusercontent.com/swapniel99/ezio/master/S6/images/ex.png  "Missclassified examples")
+</div>
 
 <br/><br/>
 ### Network Diagram
