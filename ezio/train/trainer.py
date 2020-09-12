@@ -43,5 +43,6 @@ def train(model, device, train_loader, optimizer, criterion, l1_loss=False, lamb
         correct += torch.sum(preds == target.data)  # calculating te accuracy by taking the sum of all the correct predictions in a batch.
         processed += len(data)
 
-        pbar.set_description(desc=f'Loss={loss.item()} Batch_id={batch_idx} Accuracy={100 * correct // processed:0.2f}')
-        train_acc.append(100 * correct // processed)
+        pbar.set_description(desc=f'Loss={loss.item()} Batch_id={batch_idx} Accuracy={(100 * correct / processed):0.2f}')
+        train_acc.append(100 * correct / processed)
+    return train_acc, train_losses

@@ -28,4 +28,4 @@ def test(model, device, test_loader, criterion):
 
     test_acc.append(100. * correct / len(test_loader.dataset))
 
-    return test_loss
+    return test_loss, test_acc, test_losses
