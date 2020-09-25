@@ -3,7 +3,7 @@ from albumentations.pytorch import ToTensor
 import numpy as np
 
 
-def perform_transformations(train=False, to_numpy=False):
+def perform_transformations(train=False, is_numpy=False):
     # Initialize transforms list
     final_transforms = list()
 
@@ -16,7 +16,7 @@ def perform_transformations(train=False, to_numpy=False):
         albumentation_transforms = [
             A.ShiftScaleRotate(rotate_limit=7, shift_limit = (0.1, 0.1), scale_limit=(0.9, 1.1)),
             A.HorizontalFlip(p=0.5),
-            A.CoarseDropout(max_holes=1, max_height=16, max_width=16, fill_value=mean*255)
+            A.Cutout(max_holes=1, max_height=16, max_width=16, fill_value=mean*255)
             ]
         final_transforms += albumentation_transforms
 
@@ -25,7 +25,7 @@ def perform_transformations(train=False, to_numpy=False):
     transforms = A.Compose(final_transforms)
 
     # Convert the transforms to numpy
-    if to_numpy:
+    if is_numpy:
         return lambda img:transforms(image=np.array(img))["image"]
     else:
         return transforms
