@@ -44,11 +44,11 @@ def gradcam_features(model, target_layers, images, labels, device):
     return predicted_probs, predicted_labels, gradcam_outputs
 
 
-def plot_grid(gcam_features, images, target_labels, predicted_labels, label_texts, image_size):
+def plot_grid(gcam_features, images, target_labels, predicted_labels, label_texts, image_size, figsize):
     # Generate grid parameters
     rows = len(images)
     cols = len(gcam_features) + 2
-    fig, axs = plt.subplots(nrows=rows, ncols=cols, figsize=(14,32))
+    fig, axs = plt.subplots(nrows=rows, ncols=cols, figsize=figsize)
 
     for image_index, image in enumerate(images):
         image = np.uint8(255*denormalize_image(image.view(image_size)))
