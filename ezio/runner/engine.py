@@ -20,4 +20,7 @@ def fit(model, train_loader, valid_loader, loss_function, device, optimizer, epo
         test_acc += test_acc_
         test_losses += test_losses_
 
-    return train_acc, train_losses, test_acc, test_losses, learning_rate
+    if scheduler:
+        return train_acc, train_losses, test_acc, test_losses, learning_rate
+    else:
+        return train_acc, train_losses, test_acc, test_losses
