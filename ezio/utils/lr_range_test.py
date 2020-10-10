@@ -1,50 +1,73 @@
+import math
 import torch
-from tqdm import tqdm
-import matplotlib.pyplot as plt
-import copy
 import torch.optim as optim
+import torch.nn as nn
+from tqdm import tqdm
+
+start_lr = 1e-7
+lr_find_epochs = 5
+end_lr = 1
+
+INCREASE_MODE = 'exponential'
+
+def lr_range(model, train_loader, device):
+    all_lrs = []
+    all_lr_loss = []
+    all_lr_acc = []
+
+    iter = 0
+    smoothing = 0.05
+
+    if INCREASE_MODE == 'exponential':
+      # exponential increase
+      optimizer = optim.SGD(model.parameters(), start_lr)
+      lr_lambda = lambda x: math.exp(x * math.log(end_lr / start_lr) / (lr_find_epochs * len(train_loader)))
+
+    else:
+      # linear increase
+      optimizer = optim.SGD(model.parameters(), 1.)
+      total_iterations = (len(train_loader)) * lr_find_epochs
+      slope = (end_lr - start_lr) / (total_iterations)
+      lr_lambda = lambda x: ((slope * x) + start_lr)
 
 
-def lr_range(input_model, device, total_epochs, train_loader, criterion, lrmax, lrmin):
-    # Step size to increase the learning rate over every epoch
-    step_size = (lrmax - lrmin)/total_epochs
-    learning_rates = list()
-    training_accuracies = list()
-    # Initial running rate
-    learning_rate = lrmin
-    for current_epoch in range(total_epochs):
-        print('Learning rate:',learning_rate)
-        model = copy.deepcopy(input_model)
-        optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9)
+    scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda)
+    criterion = nn.CrossEntropyLoss()
+
+    for epoch in range(lr_find_epochs):
         pbar = tqdm(train_loader)
-        correct = 0
-        processed = 0
-        model.train()
+
         for batch_idx, (data, target) in enumerate(pbar):
             data, target = data.to(device), target.to(device)
 
-            # Init
             optimizer.zero_grad()
             y_pred = model(data)
+
             loss = criterion(y_pred, target)
 
             loss.backward()
             optimizer.step()
 
-            _, preds = torch.max(y_pred, 1)  # taking the highest value of prediction.
-            correct += torch.sum(
-                preds == target.data)  # calculating te accuracy by taking the sum of all the correct predictions in a batch.
-            processed += len(data)
-            pbar.set_description(
-                desc=f'Loss={loss.item()} Batch_id={batch_idx} Accuracy={(100 * correct // processed):0.2f}')
-        training_accuracies.append(100*correct//processed)
-        learning_rates.append(optimizer.param_groups[0]['lr'])
-        learning_rate += step_size
+            # update lr
+            scheduler.step()
+            lr_step = optimizer.state_dict()["param_groups"][0]["lr"]
+            all_lrs.append(lr_step)
 
+            # loss
+            if iter==0:
+              all_lr_loss.append(loss)
+            else:
+              loss = smoothing  * loss + (1 - smoothing) * all_lr_loss[-1]
+              all_lr_loss.append(loss)
 
-    # Plot the graph between accuracy vs learning rate
-    plt.plot(learning_rates, training_accuracies)
-    plt.ylabel('train Accuracy')
-    plt.xlabel("Learning rate")
-    plt.title("Lr v/s accuracy")
-    plt.show()
+            # accuracy
+            _, preds = torch.max(y_pred, 1)
+            correct = torch.sum(preds == target.data)
+            processed = len(data)
+            accuracy = 100 * correct // processed
+
+            all_lr_acc.append(accuracy)
+
+            iter+=1
+
+    return all_lrs, all_lr_loss, all_lr_acc
