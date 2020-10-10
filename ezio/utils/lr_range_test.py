@@ -1,18 +1,20 @@
 import torch
 from tqdm import tqdm
 import matplotlib.pyplot as plt
-import torch.optim as optim
+import copy
+
 
 learning_rates = list()
 training_accuracies = list()
 
-def lr_range(model, device, total_epochs, train_loader, criterion, lrmax, lrmin):
+def lr_range(input_model, device, total_epochs, train_loader, criterion, lrmax, lrmin):
     # Step size to increase the learning rate over every epoch
     step_size = (lrmax - lrmin)/total_epochs
     # Initial running rate
     learning_rate = lrmin
     for current_epoch in range(total_epochs):
         print('Learning rate:',learning_rate)
+        model = copy.deepcopy(input_model)
         optimizer = optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9)
         pbar = tqdm(train_loader)
         correct = 0
