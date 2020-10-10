@@ -1,12 +1,12 @@
 import torch
 from tqdm import tqdm
 import matplotlib.pyplot as plt
-
+import torch.optim as optim
 
 learning_rates = list()
 training_accuracies = list()
 
-def lr_range(model, device, total_epochs, train_loader, optimizer, criterion, lrmax, lrmin):
+def lr_range(model, device, total_epochs, train_loader, criterion, lrmax, lrmin):
     # Step size to increase the learning rate over every epoch
     step_size = (lrmax - lrmin)/total_epochs
     # Initial running rate
