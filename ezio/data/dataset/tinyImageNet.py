@@ -65,7 +65,7 @@ class DatasetFromSubset(Dataset):
 
 
 
-def TinyImageNetDataSet(train_split = 70,test_transforms = None,train_transforms = None):
+def tinyImageNetDataSet(train_split = 70,test_transforms = None,train_transforms = None):
   url  = "http://cs231n.stanford.edu/tiny-imagenet-200.zip"
   download_images(url)
   classes = []
