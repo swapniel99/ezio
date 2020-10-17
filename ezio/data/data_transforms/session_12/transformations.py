@@ -17,7 +17,7 @@ def perform_transformations(train=False, is_numpy=False):
             A.PadIfNeeded(min_height=40, min_width=40, border_mode=cv2.BORDER_CONSTANT, value=np.array(mean)*255),
             A.RandomCrop(height=32, width=32, always_apply=True),
             A.HorizontalFlip(),
-            A.Cutout(num_holes=1, max_h_size=8, max_w_size=8)
+            A.Cutout(num_holes=1, max_h_size=16, max_w_size=16)
             ]
         final_transforms += albumentation_transforms
 
